@@ -1417,4 +1417,6 @@
   'customrs' => 'Customrs',
   'leads' => 'Leads',
   'Top Employees' => 'Top Employees',
+  'Roles&Permissions' => 'Roles&Permissions',
+  'Roles & Permissions' => 'Roles & Permissions',
 );

@@ -38,7 +38,7 @@
                                     <i class="tio-search"></i>
                                 </div>
                             </div>
-                            <input type="search" class="js-form-search form-control" id="search-bar-input"
+                            <input type="search" class="js-form-search form-control" id="search-bar-input1"
                                    placeholder="{{\App\CPU\translate('search')}}" aria-label="Search in front">
                             <div class="input-group">
                                 <diV class="card" id="search-card"
@@ -105,7 +105,7 @@
                         <div class="hs-unfold">
                             <a title="Website home"
                                class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                               href="{{route('home')}}" target="_blank">
+                               href="https://igopakistan.com/" target="_blank">
                                 <i class="tio-globe"></i>
                                 {{--<span class="btn-status btn-sm-status btn-status-danger"></span>--}}
                             </a>
@@ -116,8 +116,8 @@
                     <li class="nav-item d-none d-sm-inline-block">
                         <!-- Notification -->
                         <div class="hs-unfold">
-                            <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                               href="{{route('admin.contact.list')}}">
+                            <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle {{route('admin.contact.list')}}"
+                               href="">
                                 <i class="tio-email"></i>
                                 @php($message=\App\Model\Contact::where('seen',0)->count())
                                 @if($message!=0)
@@ -134,8 +134,8 @@
                         <!-- Notification -->
                         <div class="hs-unfold">
                             <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                               href="{{route('admin.orders.list',['status'=>'pending'])}}">
-                                <i class="tio-shopping-cart-outlined"></i>
+                               href="">
+                                <i class="tio-users-switch nav-icon"></i>
                                 {{--<span class="btn-status btn-sm-status btn-status-danger"></span>--}}
                             </a>
                         </div>

@@ -804,13 +804,11 @@
                             </li>
                         @endif
                     <!--reporting and analysis ends here-->
-
-                        @if(\App\CPU\Helpers::module_permission_check('employee_section'))
+                    @if(\App\CPU\Helpers::module_permission_check('employee_section'))
                             <li class="nav-item {{(Request::is('admin/employee*') || Request::is('admin/custom-role*'))?'scroll-here':''}}">
-                                <small class="nav-subtitle">{{\App\CPU\translate('employee_section')}}</small>
+                                <small class="nav-subtitle">{{\App\CPU\translate('Roles & Permissions')}}</small>
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                             </li>
-
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/custom-role*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="{{route('admin.custom-role.create')}}">
@@ -818,6 +816,12 @@
                                     <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
                                             {{\App\CPU\translate('employee_role')}}</span>
                                 </a>
+                            </li>
+                        @endif
+                        @if(\App\CPU\Helpers::module_permission_check('employee_section'))
+                            <li class="nav-item {{(Request::is('admin/employee*') || Request::is('admin/custom-role*'))?'scroll-here':''}}">
+                                <small class="nav-subtitle">{{\App\CPU\translate('employee_section')}}</small>
+                                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                             </li>
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/employee*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
