@@ -17,10 +17,10 @@ class AdminTable extends Seeder
             'id' => 1,
             'name' => 'Master Admin',
             'phone' => '01759412381',
-            'email' => 'admin@admin.com',
+            'email' => 'admin@igo.com',
             'admin_role_id' => 1,
             'image' => 'def.png',
-            'password' => bcrypt(12345678),
+            'password' => bcrypt('admin@123'),
             'remember_token' =>Str::random(10),
         ]);
     }

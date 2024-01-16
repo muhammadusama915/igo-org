@@ -21,7 +21,26 @@
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/theme.minc619.css?v=1.0">
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css">
 </head>
+<style>
+    
+    .btn-primary {
+        background-color: orangered !important;
+        border: none !important;
+        color: white; /* text color when not hovered or clicked */
+        transition: background-color 0.3s; /* smooth transition on hover */
 
+        /* Optional: Add other styles for padding, border-radius, etc. as needed */
+    }
+
+    .btn-primary:hover {
+        background-color: orange !important; /* color on hover */
+    }
+
+    .btn-primary:active,
+    .btn-primary:focus {
+        background-color: darkorange !important; /* color when clicked or focused */
+    }
+</style>
 <body>
 
 <!-- ========== MAIN CONTENT ========== -->

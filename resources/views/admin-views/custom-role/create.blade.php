@@ -36,88 +36,97 @@
                             <label for="name">{{\App\CPU\translate('module_permission')}} : </label>
                             <hr>
                             <div class="row">
-                                <div class="col-md-3">
+                            <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="order_management" class="form-check-input"
-                                               id="order">
-                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" for="order">{{\App\CPU\translate('Order_Management')}}</label>
-                                    </div>
-                                </div>
-                                <!--order end-->
-
-                                <div class="col-md-3">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="product_management" class="form-check-input"
-                                               id="product">
+                                        <input type="checkbox" name="modules[]" value="dashboard" class="form-check-input"
+                                               id="dashboard">
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="product">{{\App\CPU\translate('Product_Management')}}</label>
+                                               for="dashboard">{{\App\CPU\translate('Dashboard')}}</label>
                                     </div>
                                 </div>
-                                <!--product-->
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="csr_forms" class="form-check-input"
+                                               id="csr_forms">
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" for="csr_forms">{{\App\CPU\translate('CSR Forms')}}</label>
+                                    </div>
+                                </div>
+                                <!--csr_forms end-->
 
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="marketing_section"
+                                        <input type="checkbox" name="modules[]" value="eligibility_criteria" class="form-check-input"
+                                               id="eligibility_criteria">
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="eligibility_criteria">{{\App\CPU\translate('Eligibility Criteria')}}</label>
+                                    </div>
+                                </div>
+                                <!--eligibility_criteria-->
+
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="qa_1"
                                                class="form-check-input"
-                                               id="marketing">
+                                               id="qa_1">
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="marketing">{{\App\CPU\translate('Marketing_Section')}}</label>
+                                               for="qa_1">{{\App\CPU\translate('QA 1')}}</label>
                                     </div>
                                 </div>
-                                <!--marketing-->
+                                <!--qa_1-->
 
-                                <div class="col-md-3">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="business_section"
-                                               class="form-check-input"
-                                               id="business_section">
-                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="business_section">{{\App\CPU\translate('Business_Section')}}</label>
-                                    </div>
-                                </div>
-                                <!--business_settings-->
+                               
+                                <!--qa_2-->
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3">
+                            <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="user_section"
+                                        <input type="checkbox" name="modules[]" value="qa_2"
                                                class="form-check-input"
-                                               id="user_section">
+                                               id="qa_2">
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="user_section">{{\App\CPU\translate('user_Section')}}</label>
+                                               for="qa_2">{{\App\CPU\translate('QA 2')}}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="support_section"
+                                        <input type="checkbox" name="modules[]" value="form_filling"
                                                class="form-check-input"
-                                               id="support_section">
+                                               id="form_filling">
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="support_section">{{\App\CPU\translate('Support_Section')}}</label>
+                                               for="form_filling">{{\App\CPU\translate('Form Filling')}}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="business_settings"
+                                        <input type="checkbox" name="modules[]" value="chaser"
                                                class="form-check-input"
-                                               id="business_settings">
+                                               id="chaser">
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="business_settings">{{\App\CPU\translate('Business_Settings')}}</label>
+                                               for="chaser">{{\App\CPU\translate('Chaser')}}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="web_&_app_settings"
+                                        <input type="checkbox" name="modules[]" value="confirmation"
                                                class="form-check-input"
-                                               id="web_&_app_settings">
+                                               id="confirmation">
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="web_&_app_settings">{{\App\CPU\translate('Web_&_App_Settings')}}</label>
+                                               for="confirmation">{{\App\CPU\translate('Confirmation')}}</label>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                             <div class="row">
+                            <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="qa_3"
+                                               class="form-check-input"
+                                               id="qa_3">
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="qa_3">{{\App\CPU\translate('Qa 3')}}</label>
+                                    </div>
+                                </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
                                         <input type="checkbox" name="modules[]" value="report" class="form-check-input"
@@ -134,14 +143,7 @@
                                                for="employee_section">{{\App\CPU\translate('Employee_Section')}}</label>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="dashboard" class="form-check-input"
-                                               id="dashboard">
-                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="dashboard">{{\App\CPU\translate('Dashboard')}}</label>
-                                    </div>
-                                </div>
+                               
                             </div>
 
                             <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Submit')}}</button>

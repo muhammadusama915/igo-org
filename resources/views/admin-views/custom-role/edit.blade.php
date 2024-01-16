@@ -31,81 +31,88 @@
                             <label for="module">{{\App\CPU\translate('module_permission')}} : </label>
                             <hr>
                             <div class="row">
-                                <div class="col-md-3">
+                              <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="order_management" class="form-check-input"
-                                               id="order" {{in_array('order_management',(array)json_decode($role['module_access']))?'checked':''}}>
-                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" for="order">{{\App\CPU\translate('Order_Management')}}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="product_management" class="form-check-input"
-                                               id="product" {{in_array('product_management',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <input type="checkbox" name="modules[]" value="dashboard" class="form-check-input"
+                                               id="dashboard" {{in_array('dashboard',(array)json_decode($role['module_access']))?'checked':''}}>
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="product">{{\App\CPU\translate('Product_Management')}}</label>
+                                               for="dashboard">{{\App\CPU\translate('Dashboard')}}</label>
+                               </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="csr_forms" class="form-check-input"
+                                               id="csr_forms" {{in_array('csr_forms',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" for="csr_forms">{{\App\CPU\translate('CSR Forms')}}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="marketing_section"
+                                        <input type="checkbox" name="modules[]" value="eligibility_criteria" class="form-check-input"
+                                               id="eligibility_criteria" {{in_array('eligibility_criteria',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="eligibility_criteria">{{\App\CPU\translate('Eligibility Criteria')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="qa_1"
                                                class="form-check-input"
-                                               id="marketing" {{in_array('marketing_section',(array)json_decode($role['module_access']))?'checked':''}}>
+                                               id="qa_1" {{in_array('qa_1',(array)json_decode($role['module_access']))?'checked':''}}>
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="marketing">{{\App\CPU\translate('Marketing_Section')}}</label>
+                                               for="qa_1">{{\App\CPU\translate('QA 1')}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="qa_2"
+                                               class="form-check-input"
+                                               id="qa_2" {{in_array('qa_2',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="qa_2">{{\App\CPU\translate('QA 2')}}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="business_section"
+                                        <input type="checkbox" name="modules[]" value="form_filling"
                                                class="form-check-input"
-                                               id="business_section" {{in_array('business_section',(array)json_decode($role['module_access']))?'checked':''}}>
+                                               id="form_filling" {{in_array('user_section',(array)json_decode($role['module_access']))?'checked':''}}>
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="business_section">{{\App\CPU\translate('Business_Section')}}</label>
+                                               for="form_filling">{{\App\CPU\translate('Form Filling')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="chaser"
+                                               class="form-check-input"
+                                               id="chaser" {{in_array('chaser',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="chaser">{{\App\CPU\translate('Chaser')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="confirmation"
+                                               class="form-check-input"
+                                               id="confirmation" {{in_array('confirmation',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="confirmation">{{\App\CPU\translate('Confirmation')}}</label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3">
+                            <div class="col-md-3">
                                     <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="user_section"
+                                        <input type="checkbox" name="modules[]" value="qa_3"
                                                class="form-check-input"
-                                               id="user_section" {{in_array('user_section',(array)json_decode($role['module_access']))?'checked':''}}>
+                                               id="qa_3" {{in_array('qa_3',(array)json_decode($role['module_access']))?'checked':''}}>
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="user_section">{{\App\CPU\translate('user_section')}}</label>
+                                               for="qa_3">{{\App\CPU\translate('QA 3')}}</label>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="support_section"
-                                               class="form-check-input"
-                                               id="support_section" {{in_array('support_section',(array)json_decode($role['module_access']))?'checked':''}}>
-                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="support_section">{{\App\CPU\translate('Support_Section')}}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="business_settings"
-                                               class="form-check-input"
-                                               id="business_settings" {{in_array('business_settings',(array)json_decode($role['module_access']))?'checked':''}}>
-                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="business_settings">{{\App\CPU\translate('Business_Settings')}}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="web_&_app_settings"
-                                               class="form-check-input"
-                                               id="web_&_app_settings" {{in_array('web_&_app_settings',(array)json_decode($role['module_access']))?'checked':''}}>
-                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="web_&_app_settings">{{\App\CPU\translate('Web_&_App_Settings')}}</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
                                         <input type="checkbox" name="modules[]" value="report" class="form-check-input"
@@ -123,14 +130,7 @@
                                                for="employee_section">{{\App\CPU\translate('employee_section')}}</label>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" name="modules[]" value="dashboard" class="form-check-input"
-                                               id="dashboard" {{in_array('dashboard',(array)json_decode($role['module_access']))?'checked':''}}>
-                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
-                                               for="dashboard">{{\App\CPU\translate('Dashboard')}}</label>
-                                    </div>
-                                </div>
+                                
                             </div>
 
                             <button type="submit" class="btn btn-primary">{{\App\CPU\translate('update')}}</button>

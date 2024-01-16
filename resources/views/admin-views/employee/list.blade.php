@@ -25,15 +25,14 @@
                         <span class="text">{{\App\CPU\translate('Add')}} {{\App\CPU\translate('New')}}</span>
                     </a>
                 </div>
-                <div class="card-body" style="padding: 0">
+                <div class="card-body" style="padding: 2">
                     <div class="table-responsive">
-                        <table id="datatable" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
+                        <table id="dataTable" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                                class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
                                style="width: 100%">
                             <thead class="thead-light">
                             <tr>
-                                <th>{{\App\CPU\translate('SL')}}#</th>
-                                <th>{{\App\CPU\translate('Name')}}</th>
+                                <th>{{\App\CPU\translate('Profile')}}</th>
                                 <th>{{\App\CPU\translate('Email')}}</th>
                                 <th>{{\App\CPU\translate('Phone')}}</th>
                                 <th>{{\App\CPU\translate('Role')}}</th>
@@ -44,11 +43,20 @@
                             @foreach($em as $k=>$e)
                             @if($e->role)
                                 <tr>
-                                    <th scope="row">{{$k+1}}</th>
-                                    <td class="text-capitalize">{{$e['name']}}</td>
-                                    <td >
-                                      {{$e['email']}}
+                                    <td scope="row">
+                                    <div class="media align-items-center">
+                                        <div class="avatar avatar-sm avatar-circle mr-2">
+                                            <img class="avatar-img"
+                                                 onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                                 src="{{asset('storage/app/public/admin')}}/{{$e['image']}}"
+                                                 alt="Image Description">
+                                        </div>
+                                        <div class="media-body">
+                                            <span class="card-title h5">{{$e['name']}}</span>
+                                        </div>
+                                    </div>
                                     </td>
+                                    <td>{{$e['email']}}</td>
                                     <td>{{$e['phone']}}</td>
                                     <td>{{$e->role['name']}}</td>
                                     <td>

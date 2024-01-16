@@ -173,7 +173,7 @@
                                                  alt="Image Description">
                                         </div>
                                         <div class="media-body">
-                                            <span class="card-title h5">{{auth('admin')->user()->f_name}}</span>
+                                            <span class="card-title h5">{{auth('admin')->user()->name}}</span>
                                             <span class="card-text">{{auth('admin')->user()->email}}</span>
                                         </div>
                                     </div>

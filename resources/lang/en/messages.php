@@ -1419,4 +1419,12 @@
   'Top Employees' => 'Top Employees',
   'Roles&Permissions' => 'Roles&Permissions',
   'Roles & Permissions' => 'Roles & Permissions',
+  'CSR Forms' => 'CSR Forms',
+  'QA 1' => 'QA 1',
+  'QA 2' => 'QA 2',
+  'Form Filling' => 'Form Filling',
+  'Chaser' => 'Chaser',
+  'Qa 3' => 'Qa 3',
+  'QA 3' => 'QA 3',
+  'Profile' => 'Profile',
 );
