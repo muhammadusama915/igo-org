@@ -1,16 +1,16 @@
 <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->
-    <a class="card card-hover-shadow h-100" href="{{route('admin.orders.list',['pending'])}}" style="background: #3E215D">
+    <a class="card card-hover-shadow h-100" href="{{route('admin.lead.index')}}" style="background: #3E215D">
         <div class="card-body">
             <div class="flex-between align-items-center mb-1">
                 <div style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                     <h6 class="card-subtitle" style="color: white!important;">{{\App\CPU\translate('Total CSR Forms')}}</h6>
                     <span class="card-title h2" style="color: white!important;">
-                        {{$data['pending']}}
+                        {{$data['leads']}}
                     </span>
                 </div>
-                <div class="mt-2">
-                    <i class="tio-shopping-cart" style="font-size: 30px;color: white"></i>
+                <div class="mt-2"> 
+                    <i class="tio-book" style="font-size: 30px;color: white"></i>
                 </div>
             </div>
             <!-- End Row -->
@@ -21,11 +21,11 @@
 
 <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->
-    <a class="card card-hover-shadow h-100" href="{{route('admin.orders.list',['confirmed'])}}" style="background: #001E6C">
+    <a class="card card-hover-shadow h-100" href="" style="background: #001E6C">
         <div class="card-body">
             <div class="flex-between align-items-center mb-1">
                 <div style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                    <h6 class="card-subtitle" style="color: white!important;">{{\App\CPU\translate('Pending Eligibilty')}}</h6>
+                    <h6 class="card-subtitle" style="color: white!important;">{{\App\CPU\translate('Eligibility')}}</h6>
                      <span class="card-title h2" style="color: white!important;">
                          {{$data['confirmed']}}
                      </span>
@@ -43,7 +43,7 @@
 
 <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->
-    <a class="card card-hover-shadow h-100" href="{{route('admin.orders.list',['processing'])}}" style="background: #053742">
+    <a class="card card-hover-shadow h-100" href="" style="background: #053742">
         <div class="card-body">
             <div class="flex-between align-items-center gx-2 mb-1">
                 <div style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
@@ -65,7 +65,7 @@
 
 <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->
-    <a class="card card-hover-shadow h-100" href="{{route('admin.orders.list',['out_for_delivery'])}}" style="background: #343A40">
+    <a class="card card-hover-shadow h-100" href="" style="background: #343A40">
         <div class="card-body">
             <div class="flex-between align-items-center gx-2 mb-1">
                 <div style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">

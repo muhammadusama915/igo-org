@@ -58,6 +58,15 @@
     .nav-indicator-icon {
         margin-left: {{Session::get('direction') === "rtl" ? '6px' : ''}};
     }
+    .select2-selection--single{
+        height:40px !important;
+    }
+    .select2-selection__rendered{
+        padding-top:6px !important;
+    }
+    .select2-selection__arrow{
+        padding-top:41px !important;
+    }
 </style>
 
 <div id="sidebarMain" class="">
@@ -96,10 +105,38 @@
                                 </span>
                             </a>
                         </li>
-
                         <!-- End Dashboards -->
-
-                       
+                        <!--csr_forms-->
+                        @if(\App\CPU\Helpers::module_permission_check('csr_forms'))
+                            <li class="nav-item {{(Request::is('admin/employee*') || Request::is('admin/custom-role*'))?'scroll-here':''}}">
+                                <small class="nav-subtitle">{{\App\CPU\translate('CSR FORMS')}}</small>
+                                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            </li>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/employee*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:">
+                                    <i class="tio-file nav-icon"></i>
+                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            {{\App\CPU\translate('CSR Forms')}}
+                                        </span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/lead*')?'block':'none'}}">
+                                    <li class="nav-item {{Request::is('admin/lead/create')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.lead.create')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('add_new')}}</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{Request::is('admin/lead/index')?'active':''}}">
+                                        <a class="nav-link" href="{{route('admin.lead.index')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                   
                     <!--reporting and analysis ends here-->
                     @if(\App\CPU\Helpers::module_permission_check('employee_section'))

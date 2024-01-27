@@ -21,11 +21,51 @@
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/vendor/icon-set/style.css">
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/theme.minc619.css?v=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @if(Session::get('direction') === "rtl")
         <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/menurtl.css">
     @endif
     @stack('css_or_js')
-    <style>
+<style>
+
+        /* Normal state of pagination buttons */
+
+        /* Active state of the page item */
+        .page-item.active .page-link {
+            background-color: #ff8c00 !important; /* Orange background for the active page */
+            border-color: #ff8c00 !important; /* Orange border for the active page */
+            color: white !important; /* White text color */
+        }
+        .page-link:hover {
+            color: #ff8c00 !important;
+        }
+        /* Hover and focus states for active page item */
+        .page-item.active .page-link:hover,
+        .page-item.active .page-link:focus {
+            background-color: #ff6f00 !important; /* Slightly darker orange for hover/focus */
+            border-color: #ff6f00 !important; /* Slightly darker orange border for hover/focus */
+            color: white !important;
+        }
+        .btn-outline-secondary:not(:disabled):not(.disabled).active, .btn-outline-secondary:not(:disabled):not(.disabled):active, .show > .btn-outline-secondary.dropdown-toggle{
+            background-color:orange !important;
+            border-color : orange !important;
+        }
+        .btn-outline-secondary:hover{
+            background-color:orange !important;
+            border-color : orange !important;
+        }
+        .swal2-popup .swal2-styled.swal2-confirm{
+            background-color:orange !important;
+            border-color : orange !important;
+        }
+        .swal2-popup .swal2-styled.swal2-cancel{
+            background-color:black !important;
+            border-color : black !important;
+        }
+        input:checked + .slider{
+            background-color : orange !important;
+        }
         :root {
             --theameColor: #045cff;
         }
@@ -224,6 +264,32 @@
 @endif
 <!-- JS Plugins Init. -->
 <script>
+    function erroralert(xhr) {
+    
+    if (xhr.status == 419) {
+        window.location.href = '/';
+
+    }
+    if (typeof xhr.responseJSON.errors === 'object') {
+        var error = '';
+        $.each(xhr.responseJSON.errors, function (key, item) {
+            error += item + '\n';
+            if ($(document).find('[name="' + key + '"]').length > 0) {
+                var element = $(document).find('[name="' + key + '"]');
+                if (element.hasClass('form-control')) {
+                    element.addClass('is-invalid').after('<span class="invalid-feedback is-invalid">' +
+                        item + '</span>');
+                } else {
+                }
+            } else {
+            }
+        });
+    } else {
+    }
+}
+    $(document).ready(function(){
+        $('.select-2').select2();
+    });
     $(document).on('ready', function () {
         // ONLY DEV
         // =======================================================

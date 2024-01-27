@@ -16,6 +16,8 @@ class CreateLeadsTable extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->bigIncrements('id');
             //Patient Info
+            $table->string('status');
+            $table->string('product');
             $table->integer('sip_id');
             $table->integer('phone');
             $table->integer('phone_2')->nullable();
@@ -26,8 +28,8 @@ class CreateLeadsTable extends Migration
             $table->string('gender');
             $table->text('address');
             $table->text('address_2');
-            $table->string('state');
-            $table->string('city');
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
             $table->string('zipcode');
             $table->string('medcare_id');
             $table->string('ssn');

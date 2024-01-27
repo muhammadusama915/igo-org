@@ -28,7 +28,8 @@ Route::group(['namespace' => 'Admin',  'prefix' => 'admin', 'as' => 'admin.'], f
         //system routes
         Route::get('search-function', 'SystemController@search_function')->name('search-function');
         Route::get('maintenance-mode', 'SystemController@maintenance_mode')->name('maintenance-mode');
-
+       
+        
         Route::group(['prefix' => 'custom-role', 'as' => 'custom-role.','middleware'=>['module:employee_section']], function () {
             Route::get('create', 'CustomRoleController@create')->name('create');
             Route::post('create', 'CustomRoleController@store');
@@ -41,6 +42,17 @@ Route::group(['namespace' => 'Admin',  'prefix' => 'admin', 'as' => 'admin.'], f
             Route::get('update/{id}', 'ProfileController@edit')->name('update');
             Route::post('update/{id}', 'ProfileController@update');
             Route::post('settings-password', 'ProfileController@settings_password_update')->name('settings-password');
+        });
+
+        Route::group(['prefix'  => 'lead', 'as' => 'lead.'],function () {
+            Route::get('/index', 'LeadController@index')->name('index');
+            Route::get('create', 'LeadController@create')->name('create');
+            Route::get('cities/{iso2}', 'SystemController@cities')->name('cities');
+            Route::post('store', 'LeadController@store')->name('store');
+            Route::post('delete', 'LeadController@destroy')->name('delete');
+            Route::get('view/{id}', 'LeadController@show')->name('view');
+            Route::get('edit/{id}', 'LeadController@edit')->name('edit');
+            Route::post('update', 'LeadController@update')->name('update');
         });
 
         Route::group(['prefix' => 'withdraw', 'as' => 'withdraw.','middleware'=>['module:user_section']], function () {

@@ -86,7 +86,7 @@
                     <div class="row gx-2 gx-lg-3" id="order_stats">
                         @include('admin-views.partials._dashboard-order-stats',['data'=>$data])
                     </div>
-                </div>
+                </div> 
             </div>
 
             <!-- End Stats

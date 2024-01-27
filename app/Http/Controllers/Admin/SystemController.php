@@ -9,9 +9,22 @@ use App\Model\SearchFunction;
 use App\Model\WithdrawRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class SystemController extends Controller
 {
+    public function cities($iso2)
+    {
+        $client = new Client();
+        $cities = $client->get('https://api.countrystatecity.in/v1/countries/US/states/'.$iso2.'/cities', [
+            'headers' => [
+                'X-CSCAPI-KEY' => 'dXVHUmY0RGtpVVFCRVZPUDJnYXFrRUp0bDl6RUM5R3RyUzZobWJQUA==',
+            ],
+        ]);
+        $cities = $cities->getBody()->getContents();
+        $cities = json_decode($cities);
+        return response()->json($cities);
+    } 
     public function search_function(Request $request)
     {
         $request->validate([

@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
+use App\Model\Leads;
 
 class DashboardController extends Controller
 {
@@ -150,14 +151,8 @@ class DashboardController extends Controller
         $today = session()->has('statistics_type') && session('statistics_type') == 'today' ? 1 : 0;
         $this_month = session()->has('statistics_type') && session('statistics_type') == 'this_month' ? 1 : 0;
 
-        $pending = Order::where(['order_status' => 'pending'])
-            ->when($today, function ($query) {
-                return $query->whereDate('created_at', Carbon::today());
-            })
-            ->when($this_month, function ($query) {
-                return $query->whereMonth('created_at', Carbon::now());
-            })
-            ->count();
+        $leads = Leads::count();
+            
         $confirmed = Order::where(['order_status' => 'confirmed'])
             ->when($today, function ($query) {
                 return $query->whereDate('created_at', Carbon::today());
@@ -216,7 +211,7 @@ class DashboardController extends Controller
             ->count();
 
         $data = [
-            'pending' => $pending,
+            'leads' => $leads,
             'confirmed' => $confirmed,
             'processing' => $processing,
             'out_for_delivery' => $out_for_delivery,
