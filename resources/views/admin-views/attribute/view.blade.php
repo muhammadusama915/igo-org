@@ -171,7 +171,7 @@
                 title: '{{\App\CPU\translate('Are_you_sure_to_delete_this')}}?',
                 text: "{{\App\CPU\translate('You_will not_be_able_to_revert_this')}}!",
                 showCancelButton: true,
-                confirmButtonColor: 'primary',
+                confirmButtonColor: 'primary', 
                 cancelButtonColor: 'secondary',
                 confirmButtonText: '{{\App\CPU\translate('Yes')}}, {{\App\CPU\translate('delete_it')}}!'
             }).then((result) => {

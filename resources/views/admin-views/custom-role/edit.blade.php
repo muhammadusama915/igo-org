@@ -48,6 +48,27 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="view_csr_forms" class="form-check-input"
+                                               id="csr_forms" {{in_array('view_csr_forms',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" for="csr_forms">{{\App\CPU\translate('View CSR Forms')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="edit_csr_forms" class="form-check-input"
+                                               id="csr_forms" {{in_array('edit_csr_forms',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" for="csr_forms">{{\App\CPU\translate('Edit CSR Forms')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="delete_csr_forms" class="form-check-input"
+                                               id="csr_forms" {{in_array('delete_csr_forms',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};" for="csr_forms">{{\App\CPU\translate('Delete CSR Forms')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
                                         <input type="checkbox" name="modules[]" value="eligibility_criteria" class="form-check-input"
                                                id="eligibility_criteria" {{in_array('eligibility_criteria',(array)json_decode($role['module_access']))?'checked':''}}>
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
@@ -56,6 +77,25 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="view_eligibility_criteria" class="form-check-input"
+                                               id="eligibility_criteria" {{in_array('view_eligibility_criteria',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="eligibility_criteria">{{\App\CPU\translate('View Eligibility Criteria')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="edit_eligibility_criteria" class="form-check-input"
+                                               id="eligibility_criteria" {{in_array('edit_eligibility_criteria',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="eligibility_criteria">{{\App\CPU\translate('Edit Eligibility Criteria')}}</label>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                            <div class="col-md-3">
+                                    <div class="form-group form-check">
                                         <input type="checkbox" name="modules[]" value="qa_1"
                                                class="form-check-input"
                                                id="qa_1" {{in_array('qa_1',(array)json_decode($role['module_access']))?'checked':''}}>
@@ -63,8 +103,24 @@
                                                for="qa_1">{{\App\CPU\translate('QA 1')}}</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+                            <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="view_qa_1"
+                                               class="form-check-input"
+                                               id="qa_1" {{in_array('view_qa_1',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="qa_1">{{\App\CPU\translate('View QA 1')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="edit_qa_1"
+                                               class="form-check-input"
+                                               id="qa_1" {{in_array('edit_qa_1',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="qa_1">{{\App\CPU\translate('Edit QA 1')}}</label>
+                                    </div>
+                                </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
                                         <input type="checkbox" name="modules[]" value="qa_2"
@@ -72,6 +128,24 @@
                                                id="qa_2" {{in_array('qa_2',(array)json_decode($role['module_access']))?'checked':''}}>
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
                                                for="qa_2">{{\App\CPU\translate('QA 2')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="view_qa_2"
+                                               class="form-check-input"
+                                               id="qa_2" {{in_array('view_qa_2',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="qa_2">{{\App\CPU\translate('View QA 2')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="edit_qa_2"
+                                               class="form-check-input"
+                                               id="qa_2" {{in_array('edit_qa_2',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="qa_2">{{\App\CPU\translate('Edit QA 2')}}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -92,7 +166,9 @@
                                                for="chaser">{{\App\CPU\translate('Chaser')}}</label>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+                            <div class="row">
+                            <div class="col-md-3">
                                     <div class="form-group form-check">
                                         <input type="checkbox" name="modules[]" value="confirmation"
                                                class="form-check-input"
@@ -101,9 +177,6 @@
                                                for="confirmation">{{\App\CPU\translate('Confirmation')}}</label>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
                             <div class="col-md-3">
                                     <div class="form-group form-check">
                                         <input type="checkbox" name="modules[]" value="qa_3"

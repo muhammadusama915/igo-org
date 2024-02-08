@@ -1,6 +1,6 @@
 @extends('layouts.back-end.app')
 
-@section('title', \App\CPU\translate('Eligibility Criteria'))
+@section('title', \App\CPU\translate('QA 1'))
 
 @push('css_or_js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -14,7 +14,43 @@
             text-align: center;
             padding-top: 10px;
         }
-    </style>
+        @keyframes growProgressBar {
+  0%, 33% { --pgPercentage: 0; }
+  100% { --pgPercentage: var(--value); }
+}
+
+
+div[role="progressbar"] {
+  --size: 5rem;
+  --fg: #369;
+  --bg: #def;
+  --pgPercentage: var(--value);
+  animation: growProgressBar 3s 1 forwards;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: 
+    radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+    conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
+    ;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--fg);
+}
+/*@property --pgPercentage {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}*/
+div[role="progressbar"]::before {
+  counter-reset: percentage var(--value);
+  content: counter(percentage) '%';
+}
+
+    
+</style>
 @endpush
 @php
 use App\Model\Admin;
@@ -28,7 +64,7 @@ use App\Model\Admin;
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-no-gutter">
                             <li class="breadcrumb-item"><a class="breadcrumb-link"
-                                                           href="">{{\App\CPU\translate('Eligibility Criteria')}}</a>
+                                                           href="">{{\App\CPU\translate('QA 1')}}</a>
                             </li>
                             <li class="breadcrumb-item active"
                                 aria-current="page">{{\App\CPU\translate('Lead')}} {{\App\CPU\translate('details')}} </li>
@@ -41,14 +77,18 @@ use App\Model\Admin;
                                 <span class="legend-indicator bg-danger"></span>{{ $lead->product }}
                             </span>
                             <span class="badge badge-soft-warning ml-sm-3">
-                                <span class="legend-indicator bg-warning"></span>{{ $lead->status == 1 ? 'Waiting for Approval' : ($lead->status == 3 ? 'Rejected Eligibility Criteria' : ($lead->status == 2 ? 'Approved Eligibility Criteria' : '')) }}
+                                <span class="legend-indicator bg-warning"></span>@if($lead->status == 2) Pending for Approval @elseif($lead->status == 4) Approved from QA 1 @elseif($lead->status == 5) Rejected from QA 1 @else N/A @endif
                             </span>
                         <span class="ml-2 ml-sm-3">
                         <i class="tio-date-range"></i> {{date('d M Y H:i A',strtotime($lead->created_at))}}
                         </span>
                         <span class="ml-2 ml-sm-3 mt-1">
-                        <label class="badge badge-info">{{\App\CPU\translate('Submitted From')}}
-                            : {{$lead->agent_details->name}}</label>
+                        <label class="badge badge-info">{{\App\CPU\translate('CSR Agent')}}
+                            : {{ $lead->agent_details->name }}</label>
+                        </span>
+                        <span class="ml-2 ml-sm-3 mt-1">
+                        <label class="badge badge-success">{{\App\CPU\translate('Eligibility Criteria Agent')}}
+                            : {{ optional($lead->eligibility_details)->agent_details->name ?? 'Not Specified' }}</label>
                         </span>
                     </div>
                     <!-- End Unfold -->
@@ -441,10 +481,6 @@ use App\Model\Admin;
                         <input type="hidden" class="form-control" name="agent_id" id="formLabel"
                             placeholder="{{\App\CPU\translate('Name of Agent ')}}" aria-label="Type "
                             value="{{auth('admin')->id()}}">
-                            <label for="patient_last_visit_id" class="col-form-label input-label">{{\App\CPU\translate('Action')}}<i class="tio-help-outlined text-body ml-0" data-toggle="tooltip" data-placement="top" title="Display doc_zipcode"></i></label>
-                            <div class="input-group input-group-sm-down-break">
-                                 <p style="border-bottom:1px solid black;width:100%">{{ $lead->status == 1 ? 'Waiting for Approval' : ($lead->status == 3 ? 'Rejected Eligibility Criteria' : ($lead->status == 2 ? 'Approved Eligibility Criteria' : '')) }}</p>
-                            </div>
                             <label for="patient_last_visit_id" class="col-form-label input-label">{{\App\CPU\translate('Status')}}<i class="tio-help-outlined text-body ml-0" data-toggle="tooltip" data-placement="top" title="Display doc_zipcode"></i></label>
                             <div class="input-group input-group-sm-down-break">
                                  <p style="border-bottom:1px solid black;width:100%">{{ $lead->eligibility_details ? $lead->eligibility_details->status : 'Not Specified' }}</p>
@@ -458,7 +494,55 @@ use App\Model\Admin;
                 <!-- End Body -->
                 </div>
                 <!-- End Card -->
+                <div class="card mt-4">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">{{\App\CPU\translate('Quality Assurance 1 Feedback')}}</h4>
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Body -->
+                    <form id="qa1-form">
+                        @csrf
+                        <input type="hidden" name="lead_id" value="{{$lead->id}}">
+                        <input type="hidden" class="form-control" name="agent_id" id="formLabel"
+                            placeholder="{{\App\CPU\translate('Name of Agent ')}}" aria-label="Type "
+                            value="{{auth('admin')->id()}}">
+                        <div class="card-body">
+                            <label for="patient_last_visit_id" class="col-form-label input-label">{{\App\CPU\translate('Calling From')}}<i class="tio-help-outlined text-body ml-0" data-toggle="tooltip" data-placement="top" title="Display doc_zipcode"></i></label>
+                            <div class="input-group input-group-sm-down-break">
+                            <p style="border-bottom:1px solid black;width:100%">{{ $lead->qa1_details ? $lead->qa1_details->calling_from : 'Not Specified' }}</p>
+                            </div>
+                            <label for="patient_last_visit_id" class="col-form-label input-label">{{\App\CPU\translate('Recording')}}<i class="tio-help-outlined text-body ml-0" data-toggle="tooltip" data-placement="top" title="Display doc_zipcode"></i></label>
+                            <div class="input-group input-group-sm-down-break">
+                            <audio controls>
+                                @php
+                                    $recording = isset($lead->qa1_details) ? $lead->qa1_details->recording : '';
+                                @endphp
+                                <source src="{{ asset('storage/app/public/qa1/'.$recording) }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+
+                            </div>
+                            <label for="patient_last_visit_id" class="col-form-label input-label">{{\App\CPU\translate('Way of Talk')}}<i class="tio-help-outlined text-body ml-0" data-toggle="tooltip" data-placement="top" title="Display doc_zipcode"></i></label>
+                            <div class="input-group input-group-sm-down-break">
+                            <label class=" mr-2 mt-1 agent qa1-field" name="agent_way_of_talk">Agent way of talk</label>
+                            <label class=" mr-2 mt-1 agent qa1-field" name="agent_way_of_talk">Patient way of talk</label>
+                            </div>
+                            <div class="input-group input-group-sm-down-breakvd-flex justify-content-center mt-2">
+                                <div id="agent" role="progressbar" class="mr-4" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:{{ $lead->qa1_details ? $lead->qa1_details->agent_way_of_talk : 0 }}"></div>
+                                <div id="patient" role="progressbar" class="ml-4" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:{{ $lead->qa1_details ? $lead->qa1_details->customer_way_of_talk : 'Not Specified' }}"></div>
+                            </div>
+                            <label for="patient_last_visit_id" class="col-form-label input-label">{{\App\CPU\translate('Remarks')}}<i class="tio-help-outlined text-body ml-0" data-toggle="tooltip" data-placement="top" title="Display doc_zipcode"></i></label>
+                            <div class="input-group input-group-sm-down-break">
+                               <textarea name="remarks" class="form-control eligibility-field qa1-field" rows="3" placeholder="Please Type your remarks" disabled>{{ $lead->qa1_details ? $lead->qa1_details->remarks : 'Not Specified' }}</textarea>
+                            </div>
+                            </form>                    
+                        </div>
+                <!-- End Body -->
+                </div>
             </div>
+            
         </div>
         <!-- End Row -->
     </div>

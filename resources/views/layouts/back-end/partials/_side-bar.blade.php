@@ -108,11 +108,11 @@
                         <!-- End Dashboards -->
                         <!--csr_forms-->
                         @if(\App\CPU\Helpers::module_permission_check('csr_forms'))
-                            <li class="nav-item {{(Request::is('admin/employee*') || Request::is('admin/custom-role*'))?'scroll-here':''}}">
+                            <li class="nav-item {{(Request::is('admin/lead*')) ?'scroll-here':''}}">
                                 <small class="nav-subtitle">{{\App\CPU\translate('CSR FORMS')}}</small>
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                             </li>
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/employee*')?'active':''}}">
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/lead*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                    href="javascript:">
                                     <i class="tio-file nav-icon"></i>
@@ -137,7 +137,81 @@
                                 </ul>
                             </li>
                         @endif
-                  
+                         <!-- End CSR -->
+                        <!--Eligibility Criteria-->
+                        @if(\App\CPU\Helpers::module_permission_check('eligibility_criteria'))
+                            <li class="nav-item {{(Request::is('admin/eligibility*')) ?'scroll-here':''}}">
+                                <small class="nav-subtitle">{{\App\CPU\translate('Eligibility Criteria')}}</small>
+                                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            </li>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/eligibility*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:">
+                                    <i class="tio-file nav-icon"></i>
+                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            {{\App\CPU\translate('Eligibility Criteria')}}
+                                        </span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/eligibility*')?'block':'none'}}">
+                                    <li class="nav-item {{Request::is('admin/eligibility/index')?'active':''}}">
+                                        <a class="nav-link" href="{{route('admin.eligibility.index')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                        @if(\App\CPU\Helpers::module_permission_check('qa_1'))
+                            <li class="nav-item {{(Request::is('admin/qa1*')) ?'scroll-here':''}}">
+                                <small class="nav-subtitle">{{\App\CPU\translate('Quality Assurance 1')}}</small>
+                                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            </li>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/qa1*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:">
+                                    <i class="tio-file nav-icon"></i>
+                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            {{\App\CPU\translate('QA 1')}}
+                                        </span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/qa1*')?'block':'none'}}">
+                                    <li class="nav-item {{Request::is('admin/qa1/index')?'active':''}}">
+                                        <a class="nav-link" href="{{route('admin.qa1.index')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                        @if(\App\CPU\Helpers::module_permission_check('qa_2'))
+                            <li class="nav-item {{(Request::is('admin/qa1*')) ?'scroll-here':''}}">
+                                <small class="nav-subtitle">{{\App\CPU\translate('Quality Assurance 2')}}</small>
+                                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            </li>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/qa1*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:">
+                                    <i class="tio-file nav-icon"></i>
+                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            {{\App\CPU\translate('QA 2')}}
+                                        </span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/qa1*')?'block':'none'}}">
+                                    <li class="nav-item {{Request::is('admin/qa1/index')?'active':''}}">
+                                        <a class="nav-link" href="{{route('admin.qa1.index')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                     
                     <!--reporting and analysis ends here-->
                     @if(\App\CPU\Helpers::module_permission_check('employee_section'))
                             <li class="nav-item {{(Request::is('admin/employee*') || Request::is('admin/custom-role*'))?'scroll-here':''}}">

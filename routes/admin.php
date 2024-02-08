@@ -55,6 +55,20 @@ Route::group(['namespace' => 'Admin',  'prefix' => 'admin', 'as' => 'admin.'], f
             Route::post('update', 'LeadController@update')->name('update');
         });
 
+        Route::group(['prefix' => 'eligibility', 'as' => 'eligibility.'], function() {
+            Route::get('/index', 'EligibilityController@index')->name('index');
+            Route::get('view/{id}', 'EligibilityController@show')->name('view');
+            Route::get('edit/{id}', 'EligibilityController@edit')->name('edit');
+            Route::Post('create', 'EligibilityController@store')->name('store');
+        });
+
+        Route::group(['prefix' => 'qa1', 'as' => 'qa1.'],function() {
+            Route::get('/index', 'QA1Controller@index')->name('index');
+            Route::get('/view/{id}', 'QA1Controller@show')->name('view');
+            Route::get('/edit/{id}', 'QA1Controller@edit')->name('edit');
+            Route::Post('create', 'QA1Controller@store')->name('store');
+        });
+
         Route::group(['prefix' => 'withdraw', 'as' => 'withdraw.','middleware'=>['module:user_section']], function () {
             Route::post('update/{id}', 'WithdrawController@update')->name('update');
             Route::post('request', 'WithdrawController@w_request')->name('request');

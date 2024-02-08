@@ -9,6 +9,7 @@ use App\Model\BusinessSetting;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        Blade::directive('shorten', function ($expression) {
+            return "<?php echo (strlen($expression) > 2) ? substr($expression, 0, 2) . str_repeat('*', strlen($expression) - 2) : $expression; ?>";
+        });
+        
         try {
             $web = BusinessSetting::all();
             $settings = Helpers::get_settings($web, 'colors');

@@ -15,6 +15,10 @@ class CreateEligibilityCriteriasTable extends Migration
     {
         Schema::create('eligibility_criterias', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('lead_id');
+            $table->string('status');
+            $table->text('remarks');
+            $table->integer('agent_id');
             $table->timestamps();
         });
     }

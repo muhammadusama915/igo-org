@@ -19,4 +19,12 @@ class Leads extends Model
     public function agent_details(){
         return $this->belongsTo(Admin::class, 'agent_id','id');
     }
+
+    public function eligibility_details(){
+        return $this->belongsTo(EligibilityCriteria::class, 'id', 'lead_id');
+    }
+
+    public function qa1_details(){
+        return $this->belongsTo(QA1::class, 'id', 'lead_id');
+    }
 }

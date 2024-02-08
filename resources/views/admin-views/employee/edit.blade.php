@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="name">{{\App\CPU\translate('Password')}}</label><small> ( {{\App\CPU\translate('input if you want to change')}} )</small>
+                                    <label for="name">{{\App\CPU\translate('Temporary Password')}}</label><small> ( {{\App\CPU\translate('input if you want to change')}} )</small>
                                     <input type="password" name="password" class="form-control" id="password"
                                            placeholder="{{\App\CPU\translate('Password')}}">
                                 </div>

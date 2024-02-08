@@ -15,7 +15,7 @@ class LeadController extends Controller
         return view('admin-views.lead.index', compact('leads'));
     }
 
-    public function create()
+    public function create() 
     {
         $client = new CountryClient();
         $states = $client->get('https://api.countrystatecity.in/v1/countries/US/states', [
@@ -114,6 +114,7 @@ class LeadController extends Controller
 
     public function update(Request $request)
     {
+        $lead = Leads::find($request->id);
         $request->validate([
             'sip_id'               => 'required|integer',
             'status'               => 'required',
@@ -127,10 +128,10 @@ class LeadController extends Controller
             'gender'               => 'required|string|max:10',
             'address'              => 'required|string',
             'address_2'            => 'nullable|string',
-            //'state'                => 'required|string|max:255',
-            //'city'                 => 'required|string|max:255',
+            'state'                => 'required|string|max:255',
+            'city'                 => 'required|string|max:255',
             'zipcode'              => 'required|string|max:255',
-            'medcare_id'           => 'required|string|max:255',
+            'medcare_id'           => 'required|integer|unique:leads,medcare_id,'.$lead->id,
             'ssn'                  => 'required|string|max:255',
             'height'               => 'nullable|string|max:255',
             'weight'               => 'nullable|string|max:255',
@@ -145,7 +146,6 @@ class LeadController extends Controller
             'covid_kit'            => 'nullable|string|max:255',
             'covid_kit_date'       => 'nullable|date',
             'comment'              => 'nullable|string',
-            'agent_id'             => 'required|integer',
             'doc_phone'            => 'nullable|integer|min:11',
             'doc_f_name'           => 'nullable|string|max:255',
             'doc_l_name'           => 'nullable|string|max:255',
@@ -159,7 +159,6 @@ class LeadController extends Controller
             'patient_last_visit_id'=> 'nullable|string|max:255',
         ]);
     
-        $lead = Leads::find($request->id);
         $lead->update($request->all());
         return response()->json('success');
     }

@@ -5,34 +5,44 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Leads;
-use App\Model\EligibilityCriteria;
+use App\Model\QA1;
 use GuzzleHttp\Client as CountryClient;
 
-class EligibilityController extends Controller
+class QA1Controller extends Controller
 {
-
     public function index()
     {
-        $leads = Leads::orderBy('id','desc')->get();
-        return view('admin-views.eligibility.index', compact('leads'));
+        $leads = Leads::whereIn('status',[2,4,5])->orderBy('id','desc')->get();
+        return view('admin-views.QA1.index', compact('leads'));
     }
- 
+
+    public function create()
+    {
+        //
+    }
+
     public function store(Request $request)
     {
         $lead = Leads::find($request->lead_id);
         $lead->status = $request->action;
         $lead->save();
-        $check = EligibilityCriteria::where('lead_id', $request->lead_id)->first();
+        $check = QA1::where('lead_id', $request->lead_id)->first();
         if($check){
-            $eligibility = EligibilityCriteria::where('lead_id', $request->lead_id)->first();
+            $qa1 = QA1::where('lead_id', $request->lead_id)->first();
         }else{
-            $eligibility = new EligibilityCriteria();
+            $qa1 = new QA1();
         }
-        $eligibility->lead_id = $request->lead_id;
-        $eligibility->status = $request->status;
-        $eligibility->remarks = $request->remarks;
-        $eligibility->agent_id = $request->agent_id;
-        $eligibility->save();
+        $qa1->lead_id = $request->lead_id;
+        $qa1->agent_id = $request->agent_id;
+        $qa1->calling_from = $request->calling_from;
+        $qa1->agent_way_of_talk = $request->agent_way_of_talk;
+        $qa1->customer_way_of_talk = $request->patient_way_of_talk;
+        $qa1->remarks = $request->remarks;
+        $recording = $request->file('recording');
+        $fileName = time() . $recording->getClientOriginalName();
+        $filePath = $recording->storeAs('public/qa1', $fileName);
+        $qa1->recording = $fileName;
+        $qa1->save();
         return response()->json('success');
     }
 
@@ -48,7 +58,7 @@ class EligibilityController extends Controller
         $states = $states->getBody()->getContents();
         $states = json_decode($states);
        // $states = [];
-        return view('admin-views.eligibility.view',compact('lead','states'));
+        return view('admin-views.QA1.view',compact('lead','states'));
     }
 
     public function edit($id)
@@ -63,7 +73,16 @@ class EligibilityController extends Controller
         $states = $states->getBody()->getContents();
         $states = json_decode($states);
        // $states = [];
-        return view('admin-views.eligibility.edit',compact('lead','states'));
+        return view('admin-views.QA1.edit',compact('lead','states'));
     }
 
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
+    }
 }

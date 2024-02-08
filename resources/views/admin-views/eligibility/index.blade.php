@@ -1,24 +1,19 @@
 @extends('layouts.back-end.app')
 
-@section('title', \App\CPU\translate('Lead List'))
+@section('title', \App\CPU\translate('Eligibility List'))
 
 @push('css_or_js')
     <!-- Custom styles for this page -->
     <link href="{{asset('public/assets/back-end')}}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <style>
-        .custom-width{
-            width:100px !important;
-        }
-    </style>
 @endpush
 
-@section('content')
+@section('content') 
     <div class="content container-fluid">
         <!-- Page Header -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{\App\CPU\translate('Dashboard')}}</a></li>
-            <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('CSR Forms')}}</li>
+            <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('Eligibility Criteria')}}</li>
             <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('List')}}</li>
             </ol>
          </nav>
@@ -31,7 +26,7 @@
                     <h1 class="page-header-title">{{\App\CPU\translate('Lead List')}}<span class="badge total-lead badge-soft-info ml-1 ml-sm-1"/ attr-value="{{$leads->count()}}">{{$leads->count()}}</span></h1>
                     </div>
                     <div>
-                        <label> {{\App\CPU\translate('Rejected From Eligibility Criteria')}} : </label>
+                        <label> {{\App\CPU\translate('Waiting for Approval')}} : </label>
                         <label class="switch ml-3">
                             <input type="checkbox" class="status"
                                    onclick="filter_order()">
@@ -52,7 +47,7 @@
                     <tr>
                         <th>Action</th>
                         <th>Product</th>
-                        <th class="custom-width">Status</th>
+                        <th>Status</th>
                         <th>Agent</th>
                         <th>SIP ID</th>
                         <th>Phone</th>
@@ -105,34 +100,24 @@
                                         <i class="tio-settings"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    @if(\App\CPU\Helpers::module_permission_check('view_csr_forms'))   
-                                    <a class="dropdown-item"
-                                           href="{{route('admin.lead.view',$lead->id)}}"><i
-                                                class="tio-visible"></i> {{\App\CPU\translate('view')}}</a>
-                                    @else
-                                    <a class="dropdown-item"
-                                           href=""><i
-                                                class="tio-visible"></i> {{\App\CPU\translate('Access Denied')}}</a>
-                                    @endif
-                                    @if(\App\CPU\Helpers::module_permission_check('edit_csr_forms') && ($lead->status == 1 || $lead->status == 3)) 
+                                        @if(\App\CPU\Helpers::module_permission_check('view_eligibility_criteria'))   
                                         <a class="dropdown-item"
-                                           href="{{route('admin.lead.edit',$lead->id)}}"><i
-                                                class="tio-edit"></i> {{\App\CPU\translate('Edit')}}</a>
-                                    @else
-                                    <a class="dropdown-item"
-                                           href=""><i
-                                                class="tio-edit"></i> {{\App\CPU\translate('Access Denied')}}</a>
-                                    @endif
-                                    @if(\App\CPU\Helpers::module_permission_check('delete_csr_forms') && ($lead->status == 1 || $lead->status == 3))
-                                        <a class="dropdown-item delete" attr-id="{{$lead->id}}"
-                                           href=""><i
-                                                class="tio-delete"></i> {{\App\CPU\translate('Delete')}}</a>
-                                    @else
-                                    <a class="dropdown-item"
-                                           href=""><i
-                                                class="tio-delete"></i> {{\App\CPU\translate('Access Denied')}}</a>
-                                    @endif
-                                    </div>
+                                            href="{{route('admin.eligibility.view',$lead->id)}}"><i
+                                                    class="tio-visible"></i> {{\App\CPU\translate('view')}}</a>
+                                        @else
+                                        <a class="dropdown-item"
+                                            href=""><i
+                                                    class="tio-visible"></i> {{\App\CPU\translate('Access Denied')}}</a>
+                                        @endif
+                                        @if(\App\CPU\Helpers::module_permission_check('edit_eligibility_criteria') && ($lead->status == 1 || $lead->status == 3)) 
+                                            <a class="dropdown-item"
+                                            href="{{route('admin.eligibility.edit',$lead->id)}}"><i
+                                                    class="tio-edit"></i> {{\App\CPU\translate('Edit')}}</a>
+                                        @else
+                                        <a class="dropdown-item"
+                                            href=""><i
+                                                    class="tio-edit"></i> {{\App\CPU\translate('Access Denied')}}</a>
+                                        @endif
                                 </div>
                             </td>
                             <td>
@@ -143,9 +128,13 @@
                                 </span>
                             </td>
                             <td>
-                            @if($lead->status == '2') 
+                            @if($lead->status == '1') 
                                 <span class="badge badge-soft-warning ml-1 ml-sm-1">
-                                    Approved from Eligibility Criteria
+                                    Waiting for Approval
+                                </span> 
+                            @elseif($lead->status == '2') 
+                                <span class="badge badge-soft-primary ml-1 ml-sm-1">
+                                    Submitted For Qa 1
                                 </span> 
                             @elseif($lead->status == '3') 
                                 <span class="badge badge-soft-danger ml-1 ml-sm-1">
@@ -188,49 +177,48 @@
                                 </span>
                             @else 
                                 <span class="badge badge-soft-primary ml-1 ml-sm-1">
-                                    Submitted for Eligibility Criteria
+                                    Pending for Eligibility Criteria
                                 </span>
-                            @endif 
+                            @endif  
                             </td>
-                            <td>@shorten($lead->agent_details->name)</td>
-                            <td>@shorten($lead->sip_id)</td>
-                            <td>+1 @shorten($lead->phone)</td>
+                            <td>{{ $lead->agent_details->name }}</td>
+                            <td>@if($lead->status != 2) {{ $lead->sip_id }} @else @shorten($lead->sip_id) @endif</td>
+                            <td>+1 @if($lead->status != 2) {{ $lead->phone }} @else @shorten($lead->phone) @endif</td>
                             <td>{{ $lead->f_name }}</td>
-                            <td>@shorten($lead->m_name)</td>
+                            <td>@if($lead->status != 2) {{ $lead->m_name }} @else @shorten($lead->m_name) @endif</td>
                             <td>{{ $lead->l_name }}</td>
-                            <td>@shorten($lead->dob)</td>
-                            <td>@shorten($lead->gender)</td>
-                            <td>@shorten($lead->address)</td>
-                            <td>@shorten($lead->state)</td>
-                            <td>@shorten($lead->city)</td>
-                            <td>@shorten($lead->zipcode)</td>
-                            <td>@shorten($lead->medcare_id)</td>
-                            <td>@shorten($lead->ssn)</td>
-                            <td>@shorten($lead->height)</td>
-                            <td>@shorten($lead->weight)</td>
-                            <td>@shorten($lead->waist)</td>
-                            <td>@shorten($lead->shoe_size)</td>
-                            <td>@shorten($lead->scale_of_pain)</td>
-                            <td>@shorten($lead->pain_area)</td>
-                            <td>@shorten($lead->golucose_level)</td>
-                            <td>@shorten($lead->pills)</td>
-                            <td>@shorten($lead->injected_insulin)</td>
-                            <td>@shorten($lead->name_of_medicine)</td>
-                            <td>@shorten($lead->covid_kit)</td>
-                            <td>@shorten($lead->covid_kit_date)</td>
-                            <td>@shorten($lead->comment)</td>
-                            <td>+1 @shorten($lead->doc_phone)</td>
-                            <td>@shorten($lead->doc_f_name)</td>
-                            <td>@shorten($lead->doc_l_name)</td>
-                            <td>@shorten($lead->second_doc_details)</td>
-                            <td>@shorten($lead->doc_address)</td>
-                            <td>@shorten($lead->doc_state)</td>
-                            <td>@shorten($lead->doc_city)</td>
-                            <td>@shorten($lead->doc_zipcode)</td>
-                            <td>@shorten($lead->doc_npi)</td>
-                            <td>@shorten($lead->doc_fax)</td>
-                            <td>@shorten($lead->patient_last_visit_id)</td>
-
+                            <td>@if($lead->status != 2) {{ $lead->dob }} @else @shorten($lead->dob) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->gender }} @else @shorten($lead->gender) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->address }} @else @shorten($lead->address) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->state }} @else @shorten($lead->state) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->city }} @else @shorten($lead->city) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->zipcode }} @else @shorten($lead->zipcode) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->medcare_id }} @else @shorten($lead->medcare_id) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->ssn }} @else @shorten($lead->ssn) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->height }} @else @shorten($lead->height) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->weight }} @else @shorten($lead->weight) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->waist }} @else @shorten($lead->waist) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->shoe_size }} @else @shorten($lead->shoe_size) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->scale_of_pain }} @else @shorten($lead->scale_of_pain) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->pain_area }} @else @shorten($lead->pain_area) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->golucose_level }} @else @shorten($lead->golucose_level) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->pills }} @else @shorten($lead->pills) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->injected_insulin }} @else @shorten($lead->injected_insulin) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->name_of_medicine }} @else @shorten($lead->name_of_medicine) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->covid_kit }} @else @shorten($lead->covid_kit) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->covid_kit_date }} @else @shorten($lead->covid_kit_date) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->comment }} @else @shorten($lead->comment) @endif</td>
+                            <td>@if($lead->status != 2) +1{{ $lead->doc_phone }} @else @shorten('+1' . $lead->doc_phone) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->doc_f_name }} @else @shorten($lead->doc_f_name) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->doc_l_name }} @else @shorten($lead->doc_l_name) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->second_doc_details }} @else @shorten($lead->second_doc_details) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->doc_address }} @else @shorten($lead->doc_address) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->doc_state }} @else @shorten($lead->doc_state) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->doc_city }} @else @shorten($lead->doc_city) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->doc_zipcode }} @else @shorten($lead->doc_zipcode) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->doc_npi }} @else @shorten($lead->doc_npi) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->doc_fax }} @else @shorten($lead->doc_fax) @endif</td>
+                            <td>@if($lead->status != 2) {{ $lead->patient_last_visit_id }} @else @shorten($lead->patient_last_visit_id) @endif</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -255,7 +243,7 @@
         <!-- End Card -->
     </div>
 @endsection
-
+ 
 @push('script_2')
 <script src="{{asset('public/assets/back-end')}}/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="{{asset('public/assets/back-end')}}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
@@ -303,7 +291,7 @@
         function filter_order() {
             if($('.status').is(':checked')){
                 var dataTable = $('#dataTable').DataTable(); // Replace with your DataTable ID
-                dataTable.search('Rejected From Eligibility Criteria').draw();
+                dataTable.search('Waiting for Approval').draw();
                 toastr.success('Lead List has been filtered successfully.');
             }else{
                 var dataTable = $('#dataTable').DataTable(); // Replace with your DataTable ID
