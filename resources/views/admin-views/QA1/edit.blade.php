@@ -39,11 +39,11 @@ div[role="progressbar"] {
   font-size: calc(var(--size) / 5);
   color: var(--fg);
 }
-/*@property --pgPercentage {
+@property --pgPercentage {
   syntax: '<number>';
   inherits: false;
   initial-value: 0;
-}*/
+}
 div[role="progressbar"]::before {
   counter-reset: percentage var(--value);
   content: counter(percentage) '%';

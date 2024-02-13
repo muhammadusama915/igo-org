@@ -21,13 +21,13 @@
 
 <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->
-    <a class="card card-hover-shadow h-100" href="" style="background: #001E6C">
+    <a class="card card-hover-shadow h-100" href="{{route('admin.eligibility.index')}}" style="background: #001E6C">
         <div class="card-body">
             <div class="flex-between align-items-center mb-1">
                 <div style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                     <h6 class="card-subtitle" style="color: white!important;">{{\App\CPU\translate('Eligibility')}}</h6>
                      <span class="card-title h2" style="color: white!important;">
-                         {{$data['confirmed']}}
+                         {{$data['eligibility']}} 
                      </span>
                 </div>
 
@@ -43,13 +43,13 @@
 
 <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->
-    <a class="card card-hover-shadow h-100" href="" style="background: #053742">
+    <a class="card card-hover-shadow h-100" href="{{route('admin.qa1.index')}}" style="background: #053742">
         <div class="card-body">
             <div class="flex-between align-items-center gx-2 mb-1">
                 <div style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                     <h6 class="card-subtitle" style="color: white!important;">{{\App\CPU\translate('Out For QA 1')}}</h6>
                     <span class="card-title h2" style="color: white!important;">
-                        {{$data['processing']}}
+                        {{$data['qa1']}}
                     </span>
                 </div>
 
@@ -65,13 +65,13 @@
 
 <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->
-    <a class="card card-hover-shadow h-100" href="" style="background: #343A40">
+    <a class="card card-hover-shadow h-100" href="{{route('admin.qa2.index')}}" style="background: #343A40">
         <div class="card-body">
             <div class="flex-between align-items-center gx-2 mb-1">
                 <div style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                     <h6 class="card-subtitle" style="color: white!important;">{{\App\CPU\translate('OUT FOR QA 2')}}</h6>
                     <span class="card-title h2" style="color: white!important;">
-                        {{$data['out_for_delivery']}}
+                        {{$data['qa2']}}
                     </span>
                 </div>
 

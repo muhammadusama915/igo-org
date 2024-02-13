@@ -1539,4 +1539,8 @@
   'Quality Assurance 2' => 'Quality Assurance 2',
   'View QA 2' => 'View QA 2',
   'Edit QA 2' => 'Edit QA 2',
+  'Pending for QA 2' => 'Pending for QA 2',
+  'Quality Assurance 2 Feedback' => 'Quality Assurance 2 Feedback',
+  'Initial Recording' => 'Initial Recording',
+  'Insurance' => 'Insurance',
 );

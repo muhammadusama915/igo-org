@@ -69,6 +69,13 @@ Route::group(['namespace' => 'Admin',  'prefix' => 'admin', 'as' => 'admin.'], f
             Route::Post('create', 'QA1Controller@store')->name('store');
         });
 
+        Route::group(['prefix' => 'qa2', 'as' => 'qa2.'],function() {
+            Route::get('/index', 'QA2Controller@index')->name('index');
+            Route::get('/view/{id}', 'QA2Controller@show')->name('view');
+            Route::get('/edit/{id}', 'QA2Controller@edit')->name('edit');
+            Route::Post('create', 'QA2Controller@store')->name('store');
+        });
+
         Route::group(['prefix' => 'withdraw', 'as' => 'withdraw.','middleware'=>['module:user_section']], function () {
             Route::post('update/{id}', 'WithdrawController@update')->name('update');
             Route::post('request', 'WithdrawController@w_request')->name('request');

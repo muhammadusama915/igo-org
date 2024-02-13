@@ -27,4 +27,8 @@ class Leads extends Model
     public function qa1_details(){
         return $this->belongsTo(QA1::class, 'id', 'lead_id');
     }
+
+    public function qa2_details(){
+        return $this->belongsTo(QA2::class, 'id', 'lead_id');
+    }
 }

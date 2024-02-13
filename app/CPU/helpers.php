@@ -556,7 +556,7 @@ class Helpers
             'Tricare West Region',
             'VA Fee Basis Program'
         ];
-    
+        return $insurances;
     }
 
     public static function transaction_formatter($transaction)

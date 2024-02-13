@@ -152,31 +152,13 @@ class DashboardController extends Controller
         $this_month = session()->has('statistics_type') && session('statistics_type') == 'this_month' ? 1 : 0;
 
         $leads = Leads::count();
-            
-        $confirmed = Order::where(['order_status' => 'confirmed'])
-            ->when($today, function ($query) {
-                return $query->whereDate('created_at', Carbon::today());
-            })
-            ->when($this_month, function ($query) {
-                return $query->whereMonth('created_at', Carbon::now());
-            })
-            ->count();
-        $processing = Order::where(['order_status' => 'processing'])
-            ->when($today, function ($query) {
-                return $query->whereDate('created_at', Carbon::today());
-            })
-            ->when($this_month, function ($query) {
-                return $query->whereMonth('created_at', Carbon::now());
-            })
-            ->count();
-        $out_for_delivery = Order::where(['order_status' => 'out_for_delivery'])
-            ->when($today, function ($query) {
-                return $query->whereDate('created_at', Carbon::today());
-            })
-            ->when($this_month, function ($query) {
-                return $query->whereMonth('created_at', Carbon::now());
-            })
-            ->count();
+        
+        $eligibility = Leads::where('status', 1)->count();
+        
+        $qa1 = Leads::where('status', 2)->count();
+
+        $qa2 = Leads::where('status', 4)->count();
+
         $delivered = Order::where(['order_status' => 'delivered'])
             ->when($today, function ($query) {
                 return $query->whereDate('created_at', Carbon::today());
@@ -212,9 +194,9 @@ class DashboardController extends Controller
 
         $data = [
             'leads' => $leads,
-            'confirmed' => $confirmed,
-            'processing' => $processing,
-            'out_for_delivery' => $out_for_delivery,
+            'eligibility' => $eligibility,
+            'qa1' => $qa1,
+            'qa2' => $qa2,
             'delivered' => $delivered,
             'canceled' => $canceled,
             'returned' => $returned,
