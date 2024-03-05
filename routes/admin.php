@@ -76,6 +76,14 @@ Route::group(['namespace' => 'Admin',  'prefix' => 'admin', 'as' => 'admin.'], f
             Route::Post('create', 'QA2Controller@store')->name('store');
         });
 
+        Route::group(['prefix' => 'form_filling', 'as' => 'form_filling.'],function() {
+            Route::get('/index', 'FormFillingController@index')->name('index');
+            Route::get('/view/{id}', 'FormFillingController@show')->name('view');
+            Route::get('/edit/{id}', 'FormFillingController@edit')->name('edit');
+            Route::Post('create', 'FormFillingController@store')->name('store');
+            Route::get('view-form/{id}', 'FormFillingController@view_form')->name('view_form');
+        });
+
         Route::group(['prefix' => 'withdraw', 'as' => 'withdraw.','middleware'=>['module:user_section']], function () {
             Route::post('update/{id}', 'WithdrawController@update')->name('update');
             Route::post('request', 'WithdrawController@w_request')->name('request');

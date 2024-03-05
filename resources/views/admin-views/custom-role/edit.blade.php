@@ -152,9 +152,27 @@
                                     <div class="form-group form-check">
                                         <input type="checkbox" name="modules[]" value="form_filling"
                                                class="form-check-input"
-                                               id="form_filling" {{in_array('user_section',(array)json_decode($role['module_access']))?'checked':''}}>
+                                               id="form_filling" {{in_array('form_filling',(array)json_decode($role['module_access']))?'checked':''}}>
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
                                                for="form_filling">{{\App\CPU\translate('Form Filling')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="view_form_filling"
+                                               class="form-check-input"
+                                               id="form_filling" {{in_array('view_form_filling',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="form_filling">{{\App\CPU\translate('View Form Filling')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="edit_form_filling"
+                                               class="form-check-input"
+                                               id="form_filling" {{in_array('edit_form_filling',(array)json_decode($role['module_access']))?'checked':''}}>
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="form_filling">{{\App\CPU\translate('Edit Form Filling')}}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">

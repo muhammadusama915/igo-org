@@ -169,6 +169,24 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="view_form_filling"
+                                               class="form-check-input"
+                                               id="form_filling">
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="form_filling">{{\App\CPU\translate('View Form Filling')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="edit_form_filling"
+                                               class="form-check-input"
+                                               id="form_filling">
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="form_filling">{{\App\CPU\translate('Edit Form Filling')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
                                         <input type="checkbox" name="modules[]" value="chaser"
                                                class="form-check-input"
                                                id="chaser">

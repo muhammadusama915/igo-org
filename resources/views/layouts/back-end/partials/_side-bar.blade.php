@@ -211,6 +211,31 @@
                                 </ul>
                             </li>
                         @endif
+
+                        @if(\App\CPU\Helpers::module_permission_check('qa_2'))
+                            <li class="nav-item {{(Request::is('admin/form_filling*')) ?'scroll-here':''}}">
+                                <small class="nav-subtitle">{{\App\CPU\translate('Form Filling')}}</small>
+                                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            </li>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/form_filling*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:">
+                                    <i class="tio-file nav-icon"></i>
+                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            {{\App\CPU\translate('Form Filling')}}
+                                        </span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/form_filling*')?'block':'none'}}">
+                                    <li class="nav-item {{Request::is('admin/form_filling/index')?'active':''}}">
+                                        <a class="nav-link" href="{{route('admin.form_filling.index')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                      
                     <!--reporting and analysis ends here-->
                     @if(\App\CPU\Helpers::module_permission_check('employee_section'))

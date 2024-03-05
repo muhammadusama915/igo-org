@@ -41,30 +41,30 @@ class QA2Controller extends Controller
     public function show($id)
     {
         $lead = Leads::find($id);
-        /*$client = new CountryClient();
+        $client = new CountryClient();
         $states = $client->get('https://api.countrystatecity.in/v1/countries/US/states', [
             'headers' => [
                     'X-CSCAPI-KEY' => 'dXVHUmY0RGtpVVFCRVZPUDJnYXFrRUp0bDl6RUM5R3RyUzZobWJQUA==',
                ],
         ]);
         $states = $states->getBody()->getContents();
-        $states = json_decode($states);*/
-        $states = [];
+        $states = json_decode($states);
+        //$states = [];
         return view('admin-views.QA2.view',compact('lead','states'));
     }
 
     public function edit($id)
     {
         $lead = Leads::find($id);
-        /*$client = new CountryClient();
+        $client = new CountryClient();
         $states = $client->get('https://api.countrystatecity.in/v1/countries/US/states', [
             'headers' => [
                     'X-CSCAPI-KEY' => 'dXVHUmY0RGtpVVFCRVZPUDJnYXFrRUp0bDl6RUM5R3RyUzZobWJQUA==',
                ],
         ]);
         $states = $states->getBody()->getContents();
-        $states = json_decode($states);*/
-        $states = [];
+        $states = json_decode($states);
+        //$states = [];
         return view('admin-views.QA2.edit',compact('lead','states'));
     }
 

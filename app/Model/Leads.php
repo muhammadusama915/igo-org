@@ -16,6 +16,9 @@ class Leads extends Model
         'doc_npi', 'doc_fax', 'patient_last_visit_id'
     ];
 
+    public function all_agents(){
+        return Admin::get();
+    }
     public function agent_details(){
         return $this->belongsTo(Admin::class, 'agent_id','id');
     }
@@ -30,5 +33,9 @@ class Leads extends Model
 
     public function qa2_details(){
         return $this->belongsTo(QA2::class, 'id', 'lead_id');
+    }
+
+    public function form_filling_details(){
+        return $this->belongsTo(FormFilling::class, 'id', 'lead_id');
     }
 }
