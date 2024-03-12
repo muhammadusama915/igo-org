@@ -225,7 +225,7 @@ use App\Model\Admin;
                                        <select name="state" class="form-control select-2 p-2 patient-state" id="" required>
                                             <option value="">Select State</option>
                                             @foreach($states as $state)
-                                                <option data-attr="{{$state->iso2}}" value="{{$state->name}}">{{$state->name}}</option>
+                                                <option data-attr="{{$state->iso2}}" value="{{$state->name}}">{{$state->iso2.' '.$state->name}}</option>
                                             @endforeach
                                        </select>
                                     </div>
@@ -475,7 +475,7 @@ use App\Model\Admin;
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mt-0">
-                                <label for="formLabel" class="col-form-label input-label">{{\App\CPU\translate('First Name')}}<i
+                                <label for="formLabel" class="col-form-label input-label">{{\App\CPU\translate('Full Name')}}<i
                                         class="tio-help-outlined text-body ml-0" data-toggle="tooltip"
                                         data-placement="top"
                                         title="Display name"></i></label>
@@ -486,7 +486,7 @@ use App\Model\Admin;
 
                                     </div>
                                 </div>
-                                <div class="col-sm-6 mt-0">
+                                <div class="col-sm-6 mt-0 d-none">
                                 <label for="formLabel" class="col-form-label input-label">{{\App\CPU\translate('Last Name')}}<i
                                         class="tio-help-outlined text-body ml-0" data-toggle="tooltip"
                                         data-placement="top"
@@ -494,7 +494,7 @@ use App\Model\Admin;
                                     <div class="input-group input-group-sm-down-break">
                                         <input type="text" class="form-control doc-field" name="doc_l_name" id="formLabel"
                                                placeholder="{{\App\CPU\translate('Doctor last name')}}" aria-label="Type "
-                                               value="" required>
+                                               value="" >
 
                                     </div>
                                 </div>
@@ -514,7 +514,7 @@ use App\Model\Admin;
                                        <select name="doc_state" class="form-control select-2 p-2 doc-field doctor-state" id="" required>
                                             <option value="">Select State</option>
                                             @foreach($states as $state)
-                                                <option data-attr="{{$state->iso2}}" value="{{$state->name}}">{{$state->name}}</option>
+                                                <option data-attr="{{$state->iso2}}" value="{{$state->name}}">{{$state->iso2.' '.$state->name}}</option>
                                             @endforeach
                                        </select>
                                     </div>
@@ -636,7 +636,7 @@ use App\Model\Admin;
             }
                 });
             });
-        });
+        }); 
         $(document).on('submit','#add-lead',function(e){
             e.preventDefault();
             $('.form-control').removeClass('is-invalid');

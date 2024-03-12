@@ -38,4 +38,16 @@ class Leads extends Model
     public function form_filling_details(){
         return $this->belongsTo(FormFilling::class, 'id', 'lead_id');
     }
+
+    public function chaser_details(){
+        return $this->belongsTo(Chaser::class, 'id', 'lead_id');
+    }
+
+    public function confirmation_details(){
+        return $this->belongsTo(Confirmation::class, 'id', 'lead_id');
+    }
+
+    public function followup_details(){
+        return $this->hasMany(Followup::class, 'lead_id', 'id');
+    }
 }

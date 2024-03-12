@@ -1,6 +1,6 @@
 @extends('layouts.back-end.app')
 
-@section('title', \App\CPU\translate('Form Filling'))
+@section('title', \App\CPU\translate('Chaser'))
 
 @push('css_or_js')
     <!-- Custom styles for this page -->
@@ -13,7 +13,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{\App\CPU\translate('Dashboard')}}</a></li>
-            <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('Form Filling')}}</li>
+            <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('Chaser')}}</li>
             <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('List')}}</li>
             </ol>
          </nav>
@@ -26,7 +26,7 @@
                     <h1 class="page-header-title">{{\App\CPU\translate('Lead List')}}<span class="badge total-lead badge-soft-info ml-1 ml-sm-1"/ attr-value="{{$leads->count()}}">{{$leads->count()}}</span></h1>
                     </div>
                     <div>
-                        <label> {{\App\CPU\translate('Pending for Form Filling')}} : </label>
+                        <label> {{\App\CPU\translate('Pending for Chaser')}} : </label>
                         <label class="switch ml-3">
                             <input type="checkbox" class="status"
                                    onclick="filter_order()">
@@ -102,18 +102,18 @@
                                         <i class="tio-settings"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    @if(\App\CPU\Helpers::module_permission_check('view_form_filling'))   
+                                    @if(\App\CPU\Helpers::module_permission_check('view_chaser'))   
                                         <a class="dropdown-item"
-                                            href="{{route('admin.form_filling.view',$lead->id)}}"><i
+                                            href="{{route('admin.chaser.view',$lead->id)}}"><i
                                                     class="tio-visible"></i> {{\App\CPU\translate('view')}}</a>
                                         @else
                                         <a class="dropdown-item"
                                             href=""><i
                                                     class="tio-visible"></i> {{\App\CPU\translate('Access Denied')}}</a>
                                         @endif
-                                        @if(\App\CPU\Helpers::module_permission_check('edit_form_filling')) 
+                                        @if(\App\CPU\Helpers::module_permission_check('edit_chaser') && ($lead->status == 10 || $lead->status == 12)) 
                                             <a class="dropdown-item"
-                                            href="{{route('admin.form_filling.edit',$lead->id)}}"><i
+                                            href="{{route('admin.chaser.edit',$lead->id)}}"><i
                                                     class="tio-edit"></i> {{\App\CPU\translate('Edit')}}</a>
                                         @else
                                         <a class="dropdown-item"
@@ -199,7 +199,7 @@
                                 </span>
                                 @elseif($lead->status == '8')
                                 <span class="badge badge-soft-primary ml-1 ml-sm-1">
-                                    Submitted for chaser
+                                    Pending for Chaser
                                 </span>
                             @elseif($lead->status == '9')
                                 <span class="badge badge-soft-danger ml-1 ml-sm-1">

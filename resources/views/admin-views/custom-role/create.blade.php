@@ -194,6 +194,24 @@
                                                for="chaser">{{\App\CPU\translate('Chaser')}}</label>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="view_chaser"
+                                               class="form-check-input"
+                                               id="chaser">
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="chaser">{{\App\CPU\translate('View Chaser')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="edit_chaser"
+                                               class="form-check-input"
+                                               id="chaser">
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="chaser">{{\App\CPU\translate('Edit Chaser')}}</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                             <div class="col-md-3">
@@ -203,6 +221,24 @@
                                                id="confirmation">
                                         <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
                                                for="confirmation">{{\App\CPU\translate('Confirmation')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="view_confirmation"
+                                               class="form-check-input"
+                                               id="confirmation">
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="confirmation">{{\App\CPU\translate('View Confirmation')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" name="modules[]" value="edit_confirmation"
+                                               class="form-check-input"
+                                               id="confirmation">
+                                        <label class="form-check-label" style="{{Session::get('direction') === "rtl" ? 'margin-right: 1.25rem;' : ''}};"
+                                               for="confirmation">{{\App\CPU\translate('Edit Confirmation')}}</label>
                                     </div>
                                 </div>
                             <div class="col-md-3">

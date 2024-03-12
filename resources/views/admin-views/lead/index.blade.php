@@ -226,6 +226,30 @@
                                     @endphp
                                     Remarks: {!! $finalRemarks !!}
                                 </span>
+                                @elseif($lead->status == '10')
+                                <span class="badge badge-soft-primary ml-1 ml-sm-1">
+                                    Inprogress from Chaser
+                                </span>
+                                @elseif($lead->status == '11')
+                                <span class="badge badge-soft-primary ml-1 ml-sm-1">
+                                    Subitted for Confirmation
+                                </span>
+                            @elseif($lead->status == '12')
+                                <span class="badge badge-soft-danger ml-1 ml-sm-1">
+                                    Rejected from Chaser
+                                </span><br>
+                                <span class="badge text-left ml-1 ml-sm-1" style=''>
+                                    @php
+                                        $remarks = $lead->chaser_details->remarks;
+                                        $words = explode(' ', $remarks);
+                                        $wordsChunked = array_chunk($words, 4);
+                                        $processedRemarks = array_map(function($chunk) {
+                                            return implode(' ', $chunk);
+                                        }, $wordsChunked);
+                                        $finalRemarks = implode('<br>', $processedRemarks);
+                                    @endphp
+                                    Remarks: {!! $finalRemarks !!}
+                                </span>
                             @else 
                                 <span class="badge badge-soft-primary ml-1 ml-sm-1">
                                     Submitted for Eligibility Criteria

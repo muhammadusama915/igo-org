@@ -212,7 +212,7 @@
                             </li>
                         @endif
 
-                        @if(\App\CPU\Helpers::module_permission_check('qa_2'))
+                        @if(\App\CPU\Helpers::module_permission_check('form_filling'))
                             <li class="nav-item {{(Request::is('admin/form_filling*')) ?'scroll-here':''}}">
                                 <small class="nav-subtitle">{{\App\CPU\translate('Form Filling')}}</small>
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>
@@ -229,6 +229,56 @@
                                     style="display: {{Request::is('admin/form_filling*')?'block':'none'}}">
                                     <li class="nav-item {{Request::is('admin/form_filling/index')?'active':''}}">
                                         <a class="nav-link" href="{{route('admin.form_filling.index')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+
+                        @if(\App\CPU\Helpers::module_permission_check('chaser'))
+                            <li class="nav-item {{(Request::is('admin/chaser*')) ?'scroll-here':''}}">
+                                <small class="nav-subtitle">{{\App\CPU\translate('Chaser')}}</small>
+                                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            </li>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/chaser*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:">
+                                    <i class="tio-file nav-icon"></i>
+                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            {{\App\CPU\translate('Chaser')}}
+                                        </span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/chaser*')?'block':'none'}}">
+                                    <li class="nav-item {{Request::is('admin/chaser/index')?'active':''}}">
+                                        <a class="nav-link" href="{{route('admin.chaser.index')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+
+                        @if(\App\CPU\Helpers::module_permission_check('confirmation'))
+                            <li class="nav-item {{(Request::is('admin/confirmation*')) ?'scroll-here':''}}">
+                                <small class="nav-subtitle">{{\App\CPU\translate('Confirmation')}}</small>
+                                <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                            </li>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/chaser*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:">
+                                    <i class="tio-file nav-icon"></i>
+                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            {{\App\CPU\translate('Confirmation')}}
+                                        </span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/confirmation*')?'block':'none'}}">
+                                    <li class="nav-item {{Request::is('admin/confirmation/index')?'active':''}}">
+                                        <a class="nav-link" href="{{route('admin.confirmation.index')}}">
                                             <span class="tio-circle nav-indicator-icon"></span>
                                             <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
                                         </a>

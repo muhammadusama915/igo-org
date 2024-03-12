@@ -27,6 +27,9 @@
                 page-break-after: always;
                 padding: 0px !important;
             }
+            .page-break:empty {
+                display: none;
+            }
          }
          .show-form{
             display: block !important;

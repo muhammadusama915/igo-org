@@ -78,9 +78,25 @@ Route::group(['namespace' => 'Admin',  'prefix' => 'admin', 'as' => 'admin.'], f
 
         Route::group(['prefix' => 'form_filling', 'as' => 'form_filling.'],function() {
             Route::get('/index', 'FormFillingController@index')->name('index');
+            Route::Post('create', 'FormFillingController@store')->name('store');
             Route::get('/view/{id}', 'FormFillingController@show')->name('view');
             Route::get('/edit/{id}', 'FormFillingController@edit')->name('edit');
-            Route::Post('create', 'FormFillingController@store')->name('store');
+            Route::get('view-form/{id}', 'FormFillingController@view_form')->name('view_form');
+        });
+
+        Route::group(['prefix' => 'chaser', 'as' => 'chaser.'],function() {
+            Route::get('/index', 'ChaserController@index')->name('index');
+            Route::Post('create', 'ChaserController@store')->name('store');
+            Route::get('/view/{id}', 'ChaserController@show')->name('view');
+            Route::get('/edit/{id}', 'ChaserController@edit')->name('edit');
+            Route::get('view-form/{id}', 'FormFillingController@view_form')->name('view_form');
+        });
+
+        Route::group(['prefix' => 'confirmation', 'as' => 'confirmation.'],function() {
+            Route::get('/index', 'ConfirmationController@index')->name('index');
+            Route::Post('create', 'ConfirmationController@store')->name('store');
+            Route::get('/view/{id}', 'ConfirmationController@show')->name('view');
+            Route::get('/edit/{id}', 'ConfirmationController@edit')->name('edit');
             Route::get('view-form/{id}', 'FormFillingController@view_form')->name('view_form');
         });
 

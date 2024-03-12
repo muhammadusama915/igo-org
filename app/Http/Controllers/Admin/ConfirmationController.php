@@ -7,17 +7,16 @@ use Illuminate\Http\Request;
 use App\Model\Leads;
 use App\Model\FormFilling;
 use App\Model\Chaser;
+use App\Model\Confirmation;
 use App\Model\Followup;
 use GuzzleHttp\Client as CountryClient;
 
-class ChaserController extends Controller
+class ConfirmationController extends Controller
 {
     public function index()
     {
-        $forms = FormFilling::where('assign_to', auth('admin')->id())->get();
-        $formIds = $forms->pluck('lead_id')->toArray();
-        $leads = Leads::whereIn('id', $formIds)->orderBy('id', 'desc')->get();
-        return view('admin-views.chaser.index', compact('leads'));
+        $leads = Leads::whereIn('status', [11,13,14])->orderBy('id', 'desc')->get();
+        return view('admin-views.confirmation.index', compact('leads'));
     }
 
     public function store(Request $request)
@@ -25,22 +24,16 @@ class ChaserController extends Controller
         $lead = Leads::find($request->lead_id);
         $lead->status = $request->action;
         $lead->save();
-        $check = Chaser::where('lead_id', $request->lead_id)->first();
+        $check = Confirmation::where('lead_id', $request->lead_id)->first();
         if($check){
-            $chaser = Chaser::where('lead_id', $request->lead_id)->first();
+            $confirmation = Confirmation::where('lead_id', $request->lead_id)->first();
         }else{
-            $chaser = new Chaser();
+            $confirmation = new Confirmation();
         }
-        $chaser->lead_id = $request->lead_id;
-        $chaser->agent_id = $request->agent_id;
-        $chaser->fax_sent = $request->fax_sent;
-        $chaser->fax_received = $request->fax_received;
-        $chaser->remarks = $request->remarks;
-        $chaser->save();
-        $follow_up = new Followup();
-        $follow_up->lead_id = $request->lead_id;
-        $follow_up->remarks = $request->remarks;
-        $follow_up->save();
+        $confirmation->lead_id = $request->lead_id;
+        $confirmation->agent_id = $request->agent_id;
+        $confirmation->remarks = $request->remarks;
+        $confirmation->save();
         return response()->json('success');
     }
 
@@ -55,8 +48,8 @@ class ChaserController extends Controller
         ]);
         $states = $states->getBody()->getContents();
         $states = json_decode($states);
-       // $states = [];
-        return view('admin-views.chaser.view',compact('lead','states'));
+        //$states = [];
+        return view('admin-views.confirmation.view',compact('lead','states'));
     }
 
     public function edit($id)
@@ -71,7 +64,6 @@ class ChaserController extends Controller
         $states = $states->getBody()->getContents();
         $states = json_decode($states);
         //$states = [];
-        return view('admin-views.chaser.edit',compact('lead','states'));
+        return view('admin-views.confirmation.edit',compact('lead','states'));
     }
-
 }
